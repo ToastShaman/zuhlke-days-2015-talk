@@ -13,7 +13,9 @@ var libs = [
     'crossroads',
     'ractive',
     'hasher',
-    'lodash'
+    'lodash',
+    'preconditions',
+    'signals'
 ];
 
 gulp.task('vendor', function() {

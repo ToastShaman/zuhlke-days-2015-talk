@@ -2,6 +2,11 @@ import Ractive from 'ractive';
 import welcomeHtml from './welcome.ract';
 
 export default class Welcome {
+    
+    constructor(router) {
+        this.router = router;
+    }
+
     render(name) {
         this.view = new Ractive({
             el: 'view',

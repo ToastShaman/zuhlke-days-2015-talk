@@ -1,13 +1,15 @@
 import crossroads from 'crossroads';
 import hasher from 'hasher';
 import _ from 'lodash';
+import Preconditions from "preconditions";
+let preconditions = Preconditions.singleton();
 
 class Router {
 
     initialise() {
-        hasher.initialized.add(_.bind(this.parseHash, this));
-        hasher.changed.add(_.bind(this.parseHash, this));
-        hasher.init();    
+        hasher.initialized.add(this.parseHash, this);
+        hasher.changed.add(this.parseHash, this);
+        hasher.init();
     } 
 
     parseHash(newHash, oldHash) {
@@ -15,18 +17,23 @@ class Router {
     }
 
     addRoute(path, view) {
+        preconditions
+            .shouldBeFunction(view.render)
+            .shouldBeFunction(view.unrender);
+
         let route = crossroads.addRoute(path, _.bind(view.render, view));
         route.switched.add(function() {
+            // unrender the view when the user clicks the back button
             view.unrender();
         });
     }
 
     currentHash() {
-        hasher.getHash();    
+        return hasher.getHash();    
     }
 
-    goTo(name) {
-        hasher.setHash(name);    
+    transitionTo(path) {
+        hasher.setHash(path);
     }
 }
 
