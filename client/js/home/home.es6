@@ -2,8 +2,9 @@ import Ractive from 'ractive';
 
 class Home {
 
-    constructor(router) {
+    constructor(router, http) {
         this.router = router;
+        this.http = http;
     }
 
     render() {

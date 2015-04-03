@@ -49,7 +49,8 @@ function parseResponseHeaders(headerStr) {
 
 class Http {
 
-    constructor(httpBackend) {
+    constructor(httpBackend, events) {
+        this.events = events;
         this.httpBackend = httpBackend;
         this.defaults = {
             // transform incoming response data
@@ -91,17 +92,19 @@ class Http {
     }
 
     sendRequest(method, url, headers, data, timeout, withCredentials, responseType) {
+        let transformResponse = this.defaults.transformResponse;
+        let events = this.events;
         let deferred = RSVP.defer(), promise = deferred.promise;
+        let transformedData = _.clone(data, true);
+        let transformedHeader = _.merge(_.clone(headers || {}), this.defaults.headers.common);
 
-        this.httpBackend(
-            method,
-            url,
-            _.merge(headers || {}, this.defaults.headers.common),
-            defaultHttpRequestTransform(data),
-            done,
-            timeout,
-            withCredentials,
-            responseType);
+        _.forEach(this.defaults.transformRequest, function (fn) {
+            if (_.isFunction(fn)) {
+                transformedData = fn(transformedData);
+            }
+        });
+
+        this.httpBackend(method, url, transformedHeader, transformedData, done, timeout, withCredentials, responseType);
         return promise;
 
         function done(status, response, headers, statusText) {
@@ -114,10 +117,18 @@ class Http {
 
             if (isSuccess(status)) {
                 resolve.headers = parseResponseHeaders(resolve.headers);
-                resolve.data = defaultHttpResponseTransform(resolve.data, resolve.headers);
+                _.forEach(transformResponse, function(fn) {
+                    if (_.isFunction(fn)) {
+                        resolve.data = fn(resolve.data, resolve.headers);
+                    }
+                });
                 deferred.resolve(resolve);
+            } else {
+                if (events) {
+                    events.http.failedHttpRequest.dispatch(resolve);
+                }
+                deferred.reject(resolve);
             }
-            deferred.reject(resolve);
         }
     }
 }
