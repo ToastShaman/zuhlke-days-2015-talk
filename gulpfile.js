@@ -15,10 +15,11 @@ var libs = [
     'hasher',
     'lodash',
     'preconditions',
-    'signals'
+    'signals',
+    'rsvp'
 ];
 
-gulp.task('vendor', function() {
+gulp.task('vendor', function () {
     var b = browserify({
         debug: true,
         require: libs
@@ -31,41 +32,41 @@ gulp.task('vendor', function() {
         .pipe(gulp.dest('./dist/js/'));
 });
 
-gulp.task('minify-html', function() {
+gulp.task('minify-html', function () {
     return gulp.src('./client/index.html')
         .pipe(minifyHTML())
         .pipe(gulp.dest('./dist/'));
 });
 
-gulp.task('build', function() {
+gulp.task('build', function () {
     var ractivate = require('ractivate');
     var babelify = require('babelify');
     var b = browserify({
         debug: true
     });
 
-    libs.forEach(function(lib) {
+    libs.forEach(function (lib) {
         b.external(lib);
-    })
+    });
 
     b.add('./client/js/app.es6');
     b.transform({
         extensions: ['.ract']
-    }, ractivate)
+    }, ractivate);
     b.transform({
         extensions: ['.es6']
-    }, babelify)
+    }, babelify);
 
     return b.bundle()
         .on('error', gutil.log)
         .pipe(source('app.js'))
-        .pipe(streamify(uglify()))
+        //.pipe(streamify(uglify()))
         .pipe(gulp.dest('./dist/js/'));
 });
 
 gulp.task('js-watch', ['build'], browserSync.reload);
 
-gulp.task('serve', function() {
+gulp.task('serve', function () {
     browserSync({
         server: './dist'
     });

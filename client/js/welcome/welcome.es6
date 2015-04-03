@@ -1,8 +1,8 @@
 import Ractive from 'ractive';
 import welcomeHtml from './welcome.ract';
 
-export default class Welcome {
-    
+class Welcome {
+
     constructor(router) {
         this.router = router;
     }
@@ -11,18 +11,17 @@ export default class Welcome {
         this.view = new Ractive({
             el: 'view',
             template: welcomeHtml,
-            data: function() {
+            data: function () {
                 return {
                     name: name
                 };
-            },
-            oncomplete: this.oncomplete
+            }
         });
     }
 
     unrender() {
         return this.view.teardown();
     }
-
-    oncomplete() {}
 }
+
+export default Welcome;

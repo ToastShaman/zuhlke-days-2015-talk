@@ -1,17 +1,17 @@
 import Ractive from 'ractive';
 
-export default class Home {
+class Home {
 
     constructor(router) {
         this.router = router;
     }
-    
+
     render() {
         this.view = new Ractive({
             el: 'view',
             template: require('./home.ract')
         });
-        
+
         this.view.on('activate', () => this.goToWelcomeScreen());
     }
 
@@ -25,3 +25,5 @@ export default class Home {
         return this.view.teardown();
     }
 }
+
+export default Home;

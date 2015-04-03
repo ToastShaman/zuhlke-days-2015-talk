@@ -10,10 +10,10 @@ class Router {
         hasher.initialized.add(this.parseHash, this);
         hasher.changed.add(this.parseHash, this);
         hasher.init();
-    } 
+    }
 
     parseHash(newHash, oldHash) {
-      crossroads.parse(newHash);
+        crossroads.parse(newHash);
     }
 
     addRoute(path, view) {
@@ -22,14 +22,14 @@ class Router {
             .shouldBeFunction(view.unrender);
 
         let route = crossroads.addRoute(path, _.bind(view.render, view));
-        route.switched.add(function() {
+        route.switched.add(function () {
             // unrender the view when the user clicks the back button
             view.unrender();
         });
     }
 
     currentHash() {
-        return hasher.getHash();    
+        return hasher.getHash();
     }
 
     transitionTo(path) {
