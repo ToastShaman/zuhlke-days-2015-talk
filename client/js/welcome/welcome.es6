@@ -1,5 +1,5 @@
 import Ractive from 'ractive';
-import welcomeHtml from './welcome.ract';
+//import html from './welcome.ract';
 
 class Welcome {
 
@@ -10,7 +10,7 @@ class Welcome {
     render(name) {
         this.view = new Ractive({
             el: 'view',
-            template: welcomeHtml,
+            //template: html,
             data: function () {
                 return {
                     name: name

@@ -1,4 +1,5 @@
 import Ractive from 'ractive';
+import html from './home.ract';
 
 class Home {
 
@@ -10,7 +11,7 @@ class Home {
     render() {
         this.view = new Ractive({
             el: 'view',
-            template: require('./home.ract')
+            template: html
         });
 
         this.view.on('activate', () => this.goToWelcomeScreen());

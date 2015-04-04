@@ -60,7 +60,7 @@ gulp.task('build', function () {
     return b.bundle()
         .on('error', gutil.log)
         .pipe(source('app.js'))
-        //.pipe(streamify(uglify()))
+        .pipe(streamify(uglify()))
         .pipe(gulp.dest('./dist/js/'));
 });
 
