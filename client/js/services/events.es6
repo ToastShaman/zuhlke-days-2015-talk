@@ -3,7 +3,7 @@ import signals from 'signals';
 class Events {
     constructor() {
         this.http = {
-            failedHttpRequest: new signals.Signal()
+            failedRequest: new signals.Signal()
         }
     }
 }

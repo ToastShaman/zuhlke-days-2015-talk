@@ -125,7 +125,7 @@ class Http {
                 deferred.resolve(resolve);
             } else {
                 if (events) {
-                    events.http.failedHttpRequest.dispatch(resolve);
+                    events.http.failedRequest.dispatch(resolve);
                 }
                 deferred.reject(resolve);
             }

@@ -7,6 +7,7 @@ var source = require('vinyl-source-stream');
 var streamify = require('gulp-streamify');
 var minifyHTML = require('gulp-minify-html');
 var browserSync = require('browser-sync');
+var karma = require('karma').server;
 
 var libs = [
     'jqlite',
@@ -71,6 +72,14 @@ gulp.task('serve', function () {
         server: './dist'
     });
     gulp.watch(['./client/**/*.es6', './client/**/*.ract'], ['js-watch']);
+});
+
+gulp.task('test', function (done) {
+    karma.start({
+        configFile: __dirname + '/test/karma.conf.js',
+        singleRun: true
+    }, done);
+    gulp.watch(['./client/**/*.es6', './client/**/*.ract', './test/unit/**/*.es6'], ['test']);
 });
 
 gulp.task('default', ['vendor', 'build', 'minify-html', 'serve']);
