@@ -1,3 +1,6 @@
+import Ractive from 'ractive';
+Ractive.DEBUG = false;
+
 import router from './router.es6';
 import httpBackend from './services/httpBackend.es6';
 import Http from './services/http.es6';
