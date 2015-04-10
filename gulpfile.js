@@ -22,6 +22,10 @@ var libs = [
     'rsvp'
 ];
 
+var thirdPartyLibs = [
+    {file: './client/js/lib/semantic.js', opts: {expose: 'semantic'}}
+];
+
 var paths = {
     js: {
         src: './client/js/app.es6',
@@ -48,7 +52,9 @@ gulp.task('vendor', function () {
         require: libs
     });
 
-    b.require('./client/js/lib/semantic.js', {expose: 'semantic', depends: 'jquery'});
+    thirdPartyLibs.forEach(function(lib) {
+        b.require(lib.file, lib.opts);
+    });
 
     return b.bundle()
         .on('error', gutil.log)
@@ -77,7 +83,10 @@ gulp.task('build', function () {
         insertGlobals: true
     });
 
-    b.external('semantic');
+    thirdPartyLibs.forEach(function(lib) {
+        b.external(lib.file);
+    });
+
     libs.forEach(function (lib) {
         b.external(lib);
     });
