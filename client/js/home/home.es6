@@ -13,7 +13,6 @@ class Home {
             el: 'view',
             template: html
         });
-
         this.view.on('activate', () => this.goToWelcomeScreen());
     }
 

@@ -1,3 +1,8 @@
+import jquery from 'jquery';
+window.$ = jquery(window);
+window.jQuery = jquery;
+import semantic from 'semantic';
+
 import Ractive from 'ractive';
 Ractive.DEBUG = false;
 
