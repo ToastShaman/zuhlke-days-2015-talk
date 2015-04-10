@@ -84,7 +84,7 @@ gulp.task('build', function () {
     });
 
     thirdPartyLibs.forEach(function(lib) {
-        b.external(lib.file);
+        b.external(lib.opts.expose);
     });
 
     libs.forEach(function (lib) {
