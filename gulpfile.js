@@ -9,6 +9,9 @@ var streamify = require('gulp-streamify');
 var minifyHTML = require('gulp-minify-html');
 var browserSync = require('browser-sync');
 var karma = require('karma').server;
+var postcss = require('gulp-postcss');
+var autoprefixer = require('autoprefixer-core');
+var minifyCSS = require('gulp-minify-css');
 var less = require('gulp-less');
 
 var libs = [
@@ -19,11 +22,8 @@ var libs = [
     'lodash',
     'preconditions',
     'signals',
-    'rsvp'
-];
-
-var thirdPartyLibs = [
-    {file: './client/js/lib/semantic.js', opts: {expose: 'semantic'}}
+    'rsvp',
+    'bootstrap'
 ];
 
 var paths = {
@@ -47,13 +47,8 @@ var paths = {
 
 gulp.task('vendor', function () {
     var b = browserify({
-        debug: true,
         insertGlobals: true,
         require: libs
-    });
-
-    thirdPartyLibs.forEach(function(lib) {
-        b.require(lib.file, lib.opts);
     });
 
     return b.bundle()
@@ -71,7 +66,9 @@ gulp.task('minify-html', function () {
 
 gulp.task('less', function () {
     return gulp.src(paths.less.src)
-        .pipe(less())
+        .pipe(less({compress: true}))
+        .pipe(postcss([autoprefixer({browsers: ['last 2 version']})]))
+        .pipe(minifyCSS({keepBreaks: false}))
         .pipe(gulp.dest(paths.less.dest));
 });
 
@@ -79,12 +76,7 @@ gulp.task('build', function () {
     var ractivate = require('ractivate');
     var babelify = require('babelify');
     var b = browserify({
-        debug: true,
         insertGlobals: true
-    });
-
-    thirdPartyLibs.forEach(function(lib) {
-        b.external(lib.opts.expose);
     });
 
     libs.forEach(function (lib) {
@@ -104,7 +96,7 @@ gulp.task('build', function () {
 
 gulp.task('js-watch', ['build'], browserSync.reload);
 
-gulp.task('serve', function () {
+gulp.task('serve', ['build-all'], function () {
     browserSync({server: './dist'});
     gulp.watch(paths.js.watch, ['js-watch']);
 });
@@ -117,4 +109,5 @@ gulp.task('test', function (done) {
     gulp.watch(paths.test.watch, ['test']);
 });
 
-gulp.task('default', ['vendor', 'build', 'less', 'minify-html', 'serve']);
+gulp.task('build-all', ['vendor', 'build', 'less', 'minify-html']);
+gulp.task('default', ['serve']);

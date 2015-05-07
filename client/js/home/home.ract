@@ -1,4 +1,4 @@
 <h1>Building modular Single Page Web Applications without Frameworks</h1>
 <p>
-    <button on-click='activate'>Activate!</button>
+    <input class="btn btn-default" type="button" value="Input" on-click='activate'>
 </p>

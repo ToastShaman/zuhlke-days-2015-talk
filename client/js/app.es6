@@ -1,8 +1,7 @@
 import jquery from 'jquery';
-window.$ = jquery(window);
-window.jQuery = jquery;
-import semantic from 'semantic';
+window['$'] = window['jQuery'] = jquery;
 
+import Bootstrap from 'bootstrap';
 import Ractive from 'ractive';
 Ractive.DEBUG = false;
 
