@@ -9,11 +9,16 @@ class Home {
     }
 
     render() {
-        this.view = new Ractive({
+        this.ractive = new Ractive({
             el: 'view',
             template: html
         });
-        this.view.on('activate', () => this.goToWelcomeScreen());
+
+        this.ractive.on('signIn', () => this.signIn());
+    }
+
+    signIn() {
+        console.log(this.ractive.get('email'));
     }
 
     goToWelcomeScreen() {
@@ -23,7 +28,7 @@ class Home {
     }
 
     unrender() {
-        return this.view.teardown();
+        return this.ractive.teardown();
     }
 }
 

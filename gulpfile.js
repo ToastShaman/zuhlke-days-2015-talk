@@ -23,7 +23,8 @@ var libs = [
     'preconditions',
     'signals',
     'rsvp',
-    'bootstrap'
+    'bootstrap',
+    'parsleyjs'
 ];
 
 var paths = {
@@ -36,14 +37,26 @@ var paths = {
         src: './client/index.html',
         dest: './dist/'
     },
+    fonts: {
+        src: ['./node_modules/bootstrap/dist/fonts/*'],
+        dest: './dist/fonts/'
+    },
     less: {
         src: './client/css/styles.less',
-        dest: './dist/css/'
+        dest: './dist/css/',
+        watch: ['./client/**/*.less']
     },
     test: {
         watch: ['./client/**/*.es6', './client/**/*.ract', './test/unit/**/*.es6']
     }
 };
+
+gulp.task('fonts', function () {
+   paths.fonts.src.forEach(function(src) {
+       gulp.src(src)
+           .pipe(gulp.dest(paths.fonts.dest));
+   });
+});
 
 gulp.task('vendor', function () {
     var b = browserify({
@@ -95,10 +108,12 @@ gulp.task('build', function () {
 });
 
 gulp.task('js-watch', ['build'], browserSync.reload);
+gulp.task('less-watch', ['less'], browserSync.reload);
 
 gulp.task('serve', ['build-all'], function () {
     browserSync({server: './dist'});
     gulp.watch(paths.js.watch, ['js-watch']);
+    gulp.watch(paths.less.watch, ['less-watch']);
 });
 
 gulp.task('test', function (done) {
@@ -109,5 +124,5 @@ gulp.task('test', function (done) {
     gulp.watch(paths.test.watch, ['test']);
 });
 
-gulp.task('build-all', ['vendor', 'build', 'less', 'minify-html']);
+gulp.task('build-all', ['vendor', 'build', 'less', 'minify-html', 'fonts']);
 gulp.task('default', ['serve']);

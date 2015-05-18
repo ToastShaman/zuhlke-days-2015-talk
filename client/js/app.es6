@@ -1,9 +1,12 @@
 import jquery from 'jquery';
 window['$'] = window['jQuery'] = jquery;
 
+import parsleyjs from 'parsleyjs';
 import Bootstrap from 'bootstrap';
 import Ractive from 'ractive';
 Ractive.DEBUG = false;
+
+import parsleyDecorator from './services/parsley-ractive-decorator.es6';
 
 import router from './router.es6';
 import httpBackend from './services/httpBackend.es6';
