@@ -1,8 +1,8 @@
 import sinon from 'sinon';
 
-import httpBackend from '../../../client/js/services/httpBackend.es6';
-import Http from '../../../client/js/services/http.es6';
-import events from '../../../client/js/services/events.es6';
+import httpBackend from 'services/httpBackend.es6';
+import Http from 'services/http.es6';
+import events from 'services/events.es6';
 
 import exampleResponse from './example-response-200.es6';
 import failedResponse from './example-response-401.es6';

@@ -13,6 +13,7 @@ module.exports = function (config) {
 
         browserify: {
             debug: true,
+            paths: ['../node_modules', '../client/js'],
             transform: [['ractivate', {extensions: ['.ract']}], 'babelify'],
             extensions: ['.ract', '.es6']
         },
@@ -40,8 +41,6 @@ module.exports = function (config) {
 
         singleRun: false,
 
-        colors: true,
-
-        //logLevel: 'LOG_DEBUG'
+        colors: true
     });
 };
