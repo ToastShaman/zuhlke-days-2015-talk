@@ -1,5 +1,7 @@
 import Ractive from 'ractive';
-const parsleyConfigForBootstrap3 = {
+import _ from 'lodash';
+
+const configurationForBootstrap3 = {
     errorClass: 'has-error',
     successClass: 'has-success',
     classHandler: function (ParsleyField) {
@@ -13,9 +15,22 @@ const parsleyConfigForBootstrap3 = {
 };
 
 let parsleyDecorator = function (node) {
-    let parsleyForm = $(node).parsley(parsleyConfigForBootstrap3);
+    let parsleyForm = $(node).parsley(configurationForBootstrap3);
+    let inputFields = $(node).children('.form-group').children('input');
+
+    function validate() {
+        parsleyForm.validate();
+    }
+
+    _.forEach(inputFields, function(elem) {
+        elem.blur(validate);
+    });
+
     return {
         teardown: function () {
+            _.forEach(inputFields, function(elem) {
+                elem.unbind();
+            });
             parsleyForm.destroy();
         }
     }

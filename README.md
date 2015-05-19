@@ -20,7 +20,8 @@ See [The State of JavaScript in 2015](http://www.breck-mckye.com/blog/2014/12/th
 * Crossroads.js - routing library inspired by URL Route/Dispatch utilities
 * Hasher - Hasher is a set of JavaScript functions to control browser history for rich-media websites and applications.
 * RSVP.js - A lightweight library that provides tools for organizing asynchronous code
-* jqlite - A small lightweight jQuery replacement
+* jQuery - The real jQuery
+* Parsley - The ultimate JavaScript form validation library
 * lodash - A JavaScript utility library
 * Ractive.js - Ractive.js is a template-driven UI library
 * A custom HTTP client inspired by Angular's $http
