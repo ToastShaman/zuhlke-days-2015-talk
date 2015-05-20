@@ -1,46 +1,46 @@
-module.exports = function (config) {
-    'use strict';
+module.exports = function(config) {
+  'use strict';
 
-    config.set({
-        basePath: '',
+  config.set({
+    basePath: '',
 
-        frameworks: ['browserify', 'jasmine'],
+    frameworks: ['browserify', 'jasmine'],
 
-        preprocessors: {
-            '../client/**/*.es6': ['browserify'],
-            'unit/**/*.es6': ['browserify']
-        },
+    preprocessors: {
+      '../client/**/*.es6': ['browserify'],
+      'unit/**/*.es6': ['browserify']
+    },
 
-        browserify: {
-            debug: true,
-            paths: ['../node_modules', '../client/js'],
-            transform: [['ractivate', {extensions: ['.ract']}], 'babelify'],
-            extensions: ['.ract', '.es6']
-        },
+    browserify: {
+      debug: true,
+      paths: ['../node_modules', '../client/js'],
+      transform: [['ractivate', {extensions: ['.ract']}], 'babelify'],
+      extensions: ['.ract', '.es6']
+    },
 
-        files: [
-            '../client/**/*.es6',
-            'unit/**/*.es6'
-        ],
+    files: [
+      '../client/**/*.es6',
+      'unit/**/*.es6'
+    ],
 
-        exclude: [],
+    exclude: [],
 
-        port: 9876,
+    port: 9876,
 
-        reporters: ['progress'],
+    reporters: ['progress'],
 
-        browsers: [
-            'PhantomJS'
-        ],
+    browsers: [
+      'PhantomJS'
+    ],
 
-        plugins: [
-            'karma-phantomjs-launcher',
-            'karma-browserify',
-            'karma-jasmine'
-        ],
+    plugins: [
+      'karma-phantomjs-launcher',
+      'karma-browserify',
+      'karma-jasmine'
+    ],
 
-        singleRun: false,
+    singleRun: false,
 
-        colors: true
-    });
+    colors: true
+  });
 };

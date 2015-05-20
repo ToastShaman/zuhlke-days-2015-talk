@@ -23,5 +23,5 @@ router.addRoute('welcome/{name}', new Welcome(router));
 router.initialise();
 
 if (!router.currentHash()) {
-    router.transitionTo('home');
+  router.transitionTo('home');
 }
