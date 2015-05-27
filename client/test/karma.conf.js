@@ -7,19 +7,19 @@ module.exports = function(config) {
     frameworks: ['browserify', 'jasmine'],
 
     preprocessors: {
-      '../client/**/*.es6': ['browserify'],
+      '../src/**/*.es6': ['browserify'],
       'unit/**/*.es6': ['browserify']
     },
 
     browserify: {
       debug: true,
-      paths: ['../node_modules', '../client/js'],
+      paths: ['../node_modules', '../src/js'],
       transform: [['ractivate', {extensions: ['.ract']}], 'babelify'],
       extensions: ['.ract', '.es6']
     },
 
     files: [
-      '../client/**/*.es6',
+      '../src/**/*.es6',
       'unit/**/*.es6'
     ],
 
