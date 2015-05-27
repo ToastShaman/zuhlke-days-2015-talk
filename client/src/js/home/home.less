@@ -1,7 +1,9 @@
-body, html {
+.background {
+  background: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33)) no-repeat;
+  position: fixed;
+  z-index: -999;
+  width: 100%;
   height: 100%;
-  background-repeat: no-repeat;
-  background-image: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));
 }
 
 .card-container.card {
@@ -18,9 +20,6 @@ body, html {
   cursor: default;
 }
 
-/*
- * Card component
- */
 .card {
   background-color: #F7F7F7;
   /* just in case there no content*/
@@ -46,9 +45,6 @@ body, html {
   border-radius: 50%;
 }
 
-/*
- * Form styles
- */
 .profile-name-card {
   font-size: 16px;
   font-weight: bold;

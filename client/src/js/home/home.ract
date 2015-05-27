@@ -1,10 +1,11 @@
+<div class="background"></div>
 <div class="container home">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
 
         <p id="profile-name" class="profile-name-card"></p>
 
-        <form class="form-signin" decorator="parsley">
+        <form class="form-signin" decorator="parsley" autocomplete="off">
             <span id="reauth-email" class="reauth-email"></span>
 
             <div class="form-group">
@@ -24,7 +25,10 @@
                        value="{{password}}"
                        required>
             </div>
-            <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" on-click='signIn'>Sign in</button>
+            <button class="btn btn-lg btn-primary btn-block btn-signin"
+                    type="submit"
+                    on-click='signIn'
+                    disabled="{{!parsleyValid}}">Sign in</button>
         </form>
         <a href="#/welcome/clicked" class="forgot-password">
             Forgot the password?

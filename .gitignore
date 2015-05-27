@@ -1,6 +1,5 @@
 
-node_modules/
-dist/
-.idea/
-
-zuhlke-days-2015-talk.iml
+client/node_modules/
+client/dist/
+client/.idea/
+client/*.iml

@@ -29,12 +29,12 @@ var libs = [
 
 var paths = {
   js: {
-    src: './client/js/app.es6',
+    src: './src/js/app.es6',
     dest: './dist/js/',
-    watch: ['./client/**/*.es6', './client/**/*.ract']
+    watch: ['./src/**/*.es6', './src/**/*.ract']
   },
   html: {
-    src: './client/index.html',
+    src: './src/index.html',
     dest: './dist/'
   },
   fonts: {
@@ -42,12 +42,12 @@ var paths = {
     dest: './dist/fonts/'
   },
   less: {
-    src: './client/css/styles.less',
+    src: './src/css/styles.less',
     dest: './dist/css/',
-    watch: ['./client/**/*.less']
+    watch: ['./src/**/*.less']
   },
   test: {
-    watch: ['./client/**/*.es6', './client/**/*.ract', './test/unit/**/*.es6']
+    watch: ['./src/**/*.es6', './src/**/*.ract', './test/unit/**/*.es6']
   }
 };
 
