@@ -3,3 +3,5 @@ client/node_modules/
 client/dist/
 client/.idea/
 client/*.iml
+
+api/node_modules
