@@ -24,7 +24,8 @@ var libs = [
   'signals',
   'rsvp',
   'bootstrap',
-  'parsleyjs'
+  'parsleyjs',
+  'store'
 ];
 
 var paths = {
@@ -103,7 +104,7 @@ gulp.task('build', function() {
   return b.bundle()
     .on('error', gutil.log)
     .pipe(source('app.js'))
-    .pipe(streamify(uglify()))
+    //.pipe(streamify(uglify()))
     .pipe(gulp.dest(paths.js.dest));
 });
 

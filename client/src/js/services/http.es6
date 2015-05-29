@@ -1,5 +1,5 @@
 import _ from "lodash";
-import RSVP from "rsvp";
+import rsvp from "rsvp";
 
 const APPLICATION_JSON = 'application/json';
 const CONTENT_TYPE_APPLICATION_JSON = {'Content-Type': APPLICATION_JSON + ';charset=utf-8'};
@@ -94,7 +94,7 @@ class Http {
   sendRequest(method, url, headers, data, timeout, withCredentials, responseType) {
     let transformResponse = this.defaults.transformResponse;
     let events = this.events;
-    let deferred = RSVP.defer(), promise = deferred.promise;
+    let deferred = rsvp.defer(), promise = deferred.promise;
     let transformedData = _.clone(data, true);
     let transformedHeader = _.merge(_.clone(headers || {}), this.defaults.headers.common);
 

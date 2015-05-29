@@ -39,6 +39,7 @@
     "preconditions": "^1.0.8",
     "ractive": "^0.7.3",
     "rsvp": "^3.0.18",
-    "signals": "^1.0.0"
+    "signals": "^1.0.0",
+    "store": "^1.3.17"
   }
 }

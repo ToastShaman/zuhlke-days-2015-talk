@@ -5,3 +5,7 @@ client/.idea/
 client/*.iml
 
 api/node_modules
+api/.idea
+api/*.iml
+
+client/npm-debug.log
