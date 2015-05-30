@@ -1,6 +1,6 @@
 import Home from 'home/home.es6';
 
-describe('the home view', function() {
+describe('The Home View', function() {
 
   it('should render', function() {
     let home = new Home();

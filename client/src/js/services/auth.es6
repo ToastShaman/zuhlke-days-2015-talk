@@ -1,5 +1,3 @@
-import rsvp from 'rsvp';
-
 class Auth {
 
   constructor(http, store) {
@@ -14,7 +12,7 @@ class Auth {
       let user = response.data.user;
 
       this.store.local.set('accessToken', accessToken);
-      this.store.memory.set('user', accessToken);
+      this.store.memory.set('user', user);
       this.http.defaults.headers.common['X-Auth-Token'] = accessToken;
 
       return user;

@@ -1,14 +1,8 @@
-import Storage from 'services/storage.es6';
+import storage from 'services/storage.es6';
 
 describe('The Storage Service', function() {
 
   describe('(in memory)', function() {
-
-    let storage;
-
-    beforeEach(function() {
-      storage = new Storage();
-    });
 
     it('should return undefined if a key does not exist', function() {
       expect(storage.memory.get('non-existent')).toBeUndefined();
@@ -30,11 +24,6 @@ describe('The Storage Service', function() {
   });
 
   describe('(local)', function() {
-    let storage;
-
-    beforeEach(function() {
-      storage = new Storage();
-    });
 
     it('should return undefined if a key does not exist', function() {
       expect(storage.local.get('non-existent')).toBeUndefined();
