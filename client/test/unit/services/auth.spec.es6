@@ -19,7 +19,7 @@ describe('The Authorization Service', function() {
   });
 
   afterEach(function() {
-    //server.restore();
+    server.restore();
   });
 
   it('should authenticate a user successfully', function(done) {
