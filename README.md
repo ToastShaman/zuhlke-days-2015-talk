@@ -25,3 +25,4 @@ See [The State of JavaScript in 2015](http://www.breck-mckye.com/blog/2014/12/th
 * lodash - A JavaScript utility library
 * Ractive.js - Ractive.js is a template-driven UI library
 * A custom HTTP client inspired by Angular's $http
+* store.js - localStorage wrapper for all browsers without using cookies or flash.
