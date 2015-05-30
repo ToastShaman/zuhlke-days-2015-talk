@@ -1,0 +1,4 @@
+<nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header"></div>
+    <div class="navbar-logout-btn"><a href="javascript:void(0);" class="btn btn-danger square-btn-adjust" on-click='logout'>Logout</a></div>
+</nav>

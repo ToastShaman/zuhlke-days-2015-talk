@@ -1,5 +1,6 @@
 import Ractive from 'ractive';
 import html from './welcome.ract';
+import navbar from '../navbar/navbar.ract';
 
 class Welcome {
 
@@ -8,19 +9,26 @@ class Welcome {
   }
 
   render(name) {
-    this.view = new Ractive({
+    this.ractive = new Ractive({
       el: 'view',
       template: html,
+      partials: {navbar: navbar},
       data: function() {
         return {
           name: name
         };
       }
     });
+
+    this.ractive.on('logout', () => this.logout());
+  }
+
+  logout() {
+    this.unrender().then(() => this.router.transitionTo('/home/'));
   }
 
   unrender() {
-    return this.view.teardown();
+    return this.ractive.teardown();
   }
 }
 
