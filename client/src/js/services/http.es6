@@ -62,7 +62,8 @@ class Http {
       // default headers
       headers: {
         common: {
-          'Accept': 'application/json, text/plain, */*'
+          'Accept': 'application/json, text/plain, */*',
+          'Content-Type': APPLICATION_JSON + ';charset=utf-8'
         },
         post: _.clone(CONTENT_TYPE_APPLICATION_JSON),
         put: _.clone(CONTENT_TYPE_APPLICATION_JSON),

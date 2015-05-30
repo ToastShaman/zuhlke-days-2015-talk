@@ -13,7 +13,10 @@ class Home {
     this.auth.clearLogin();
     this.ractive = new Ractive({
       el: 'view',
-      template: html
+      template: html,
+      data: {
+        showError: false
+      }
     });
 
     this.ractive.on('signIn', () => {
@@ -24,7 +27,13 @@ class Home {
   }
 
   signIn(username, password) {
-    this.auth.login(username, password).then((user) => this.goToWelcomeScreen(user.username));
+    this.auth.login(username, password)
+      .then((user) => this.goToWelcomeScreen(user.username),
+            (err) => this.showError());
+  }
+
+  showError() {
+    this.ractive.set('showError', true);
   }
 
   goToWelcomeScreen(username) {

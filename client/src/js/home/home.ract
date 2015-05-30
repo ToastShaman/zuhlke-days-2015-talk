@@ -30,6 +30,9 @@
                     on-click='signIn'
                     disabled="{{!parsleyValid}}">Sign in</button>
         </form>
+        {{#if showError}}
+        <p class="bg-danger">Your username/password is invalid!</p>
+        {{/if}}
         <a href="#/welcome/clicked" class="forgot-password">
             Forgot the password?
         </a>
