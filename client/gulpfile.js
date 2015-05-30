@@ -89,8 +89,11 @@ gulp.task('less', function() {
 gulp.task('build', function() {
   var ractivate = require('ractivate');
   var babelify = require('babelify');
+  var sourcemaps = require('gulp-sourcemaps');
+  var buffer = require('vinyl-buffer');
   var b = browserify({
-    insertGlobals: true
+    insertGlobals: true,
+    debug: true
   });
 
   libs.forEach(function(lib) {
@@ -104,7 +107,10 @@ gulp.task('build', function() {
   return b.bundle()
     .on('error', gutil.log)
     .pipe(source('app.js'))
-    //.pipe(streamify(uglify()))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(streamify(uglify()))
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(paths.js.dest));
 });
 
