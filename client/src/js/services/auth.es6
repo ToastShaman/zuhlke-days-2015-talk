@@ -7,7 +7,7 @@ class Auth {
 
   login(username, password) {
     let payload = (username && password) ? {username, password} : undefined;
-    return this.http.post('http://localhost:3000/login', payload).then((response) => {
+    return this.http.post('http://localhost:8080/login', payload).then((response) => {
       let accessToken = response.data.accessToken;
       let user = response.data.user;
 
@@ -25,6 +25,12 @@ class Auth {
       this.http.defaults.headers.common['X-Auth-Token'] = accessToken;
     }
     return this.login();
+  }
+
+  clearLogin() {
+    delete this.http.defaults.headers.common['X-Auth-Token'];
+    this.store.local.remove('accessToken');
+    this.store.memory.remove('user');
   }
 }
 

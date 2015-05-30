@@ -9,3 +9,5 @@ api/.idea
 api/*.iml
 
 client/npm-debug.log
+
+api/npm-debug.log

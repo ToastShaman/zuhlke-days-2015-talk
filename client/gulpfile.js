@@ -128,7 +128,6 @@ gulp.task('test', function(done) {
     configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
   }, done);
-  gulp.watch(paths.test.watch, ['test']);
 });
 
 gulp.task('build-all', ['vendor', 'build', 'less', 'minify-html', 'fonts']);

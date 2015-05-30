@@ -3,12 +3,14 @@ import html from './home.ract'
 
 class Home {
 
-  constructor(router, http) {
+  constructor(auth, router, http) {
     this.router = router;
     this.http = http;
+    this.auth = auth;
   }
 
   render() {
+    this.auth.clearLogin();
     this.ractive = new Ractive({
       el: 'view',
       template: html
@@ -22,15 +24,11 @@ class Home {
   }
 
   signIn(username, password) {
-    this.http.post('login', {username, password}).then(() => {
-
-    }, (error) => {
-        console.log(this);
-    });
+    this.auth.login(username, password).then((user) => this.goToWelcomeScreen(user.username));
   }
 
-  goToWelcomeScreen() {
-    this.unrender().then(() => this.router.transitionTo('/welcome/clicked'));
+  goToWelcomeScreen(username) {
+    this.unrender().then(() => this.router.transitionTo('/welcome/' + username));
   }
 
   unrender() {

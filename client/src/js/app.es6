@@ -23,7 +23,7 @@ import Sorry from './sorry/sorry.es6';
 let http = new Http(httpBackend, events);
 let auth = new Auth(http, store);
 
-router.addRoute('home', new Home(router, http));
+router.addRoute('home', new Home(auth, router, http));
 router.addRoute('sorry', new Sorry(router));
 router.addRoute('welcome/{name}', new Welcome(router));
 router.initialise();
@@ -32,5 +32,6 @@ auth.restoreLogin().then(function(user) {
   if (user) router.transitionTo('welcome/' + user.username);
   else router.transitionTo('home');
 }, function(err) {
-  router.transitionTo('sorry');
+  if (err.status == -1) router.transitionTo('sorry');
+  else router.transitionTo('home');
 });
