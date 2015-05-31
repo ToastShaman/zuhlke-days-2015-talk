@@ -3,24 +3,17 @@ var router = express.Router();
 var jwt = require('jsonwebtoken');
 
 router.post('/login', function(req, res, next) {
-
   var username = req.body.username;
   var password = req.body.password;
+  var existingUser = req.app.locals.users.find({'username': username});
 
-  if (username === 'arthur@nudge.com' && password === 'password') {
-    var accessToken = jwt.sign({foo: 'bar'}, 'shhhhh');
-    return res.json({
-      accessToken: accessToken,
-      user: {
-        username: 'arthur@nudge.com',
-        firstname: 'Arthur',
-        lastname: 'Nudge'
-      }
-    });
+  if (existingUser && existingUser.password === password) {
+    return res.json(existingUser);
   }
 
-  res.send(401);
-
+  var err = new Error('Invalid username/password');
+  err.status = 401;
+  next(err);
 });
 
 module.exports = router;
