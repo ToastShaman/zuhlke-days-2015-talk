@@ -3,24 +3,19 @@
 
 	<head>
 		<meta charset="utf-8">
-
-		<title>reveal.js - The HTML Presentation Framework</title>
-
-		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
-		<meta name="author" content="Hakim El Hattab">
-
+		<title>Building modular Single Page Web Applications without Frameworks</title>
+		<meta name="description" content="Building modular Single Page Web Applications without Frameworks">
+		<meta name="author" content="Kevin Denver">
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
+		<link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css" id="theme">
-
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
-
-		<!-- Printing and PDF exports -->
+		<link rel="stylesheet" href="css/custom.css" id="theme">
+		<link rel="stylesheet" href="css/github.css">
 		<script>
 			var link = document.createElement( 'link' );
 			link.rel = 'stylesheet';
@@ -38,25 +33,22 @@
 
 		<div class="reveal">
 
-			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
-				<section>
-					<h1>Reveal.js</h1>
-					<h3>The HTML Presentation Framework</h3>
+				<section data-background="#0ac2d2">
+					<h1>Building modular Single Page Web Applications without Frameworks</h1>
 					<p>
-						<small>Created by <a href="http://hakim.se">Hakim El Hattab</a> / <a href="http://twitter.com/hakimel">@hakimel</a></small>
+						<small>Created by <a href="mailto:kevin.denver@zuhlke.com">Kevin Denver</a> / <a href="https://github.com/toastshaman">@ToastShaman</a></small>
 					</p>
 				</section>
 
-				<section>
+				<section data-background="#7bb7fa">
 					<h2>Hello There</h2>
 					<p>
 						reveal.js enables you to create beautiful interactive slide decks using HTML. This presentation will show you examples of what it can do.
 					</p>
 				</section>
 
-				<!-- Example of nested vertical slides -->
-				<section>
+				<section data-background="#60d7a9">
 					<section>
 						<h2>Vertical Slides</h2>
 						<p>Slides can be nested inside of each other.</p>
@@ -80,14 +72,14 @@
 					</section>
 				</section>
 
-				<section>
+				<section data-background="#fdc162">
 					<h2>Slides</h2>
 					<p>
 						Not a coder? Not a problem. There's a fully-featured visual editor for authoring these, try it out at <a href="http://slides.com" target="_blank">http://slides.com</a>.
 					</p>
 				</section>
 
-				<section>
+				<section data-background="#fd6a62">
 					<h2>Point of View</h2>
 					<p>
 						Press <strong>ESC</strong> to enter the slide overview.
@@ -97,7 +89,7 @@
 					</p>
 				</section>
 
-				<section>
+				<section data-background="#f68dbb">
 					<h2>Touch Optimized</h2>
 					<p>
 						Presentations look great on touch devices, like mobile phones and tablets. Simply swipe through your slides.
@@ -399,7 +391,7 @@ Reveal.addEventListener( 'customevent', function() {
 					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
 					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
 					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, condition: function() { return !!document.querySelector( 'pre code' ); }, callback: function() { hljs.configure({tabReplace: '  '}); hljs.initHighlightingOnLoad(); } },
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
