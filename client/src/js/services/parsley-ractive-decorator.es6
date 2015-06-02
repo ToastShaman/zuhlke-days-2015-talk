@@ -1,6 +1,5 @@
 import Ractive from 'ractive';
 import _ from 'lodash';
-import $ from 'jquery';
 
 const defaultConfiguration = {
   isFormValid: 'parsleyValid',

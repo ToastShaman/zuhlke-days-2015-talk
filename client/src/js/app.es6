@@ -1,8 +1,6 @@
-import jquery from 'jquery';
-window['$'] = window['jQuery'] = jquery;
+import Parsely from 'parsleyjs'; // initialise Parsley
+import Bootstrap from 'bootstrap'; // initialise Bootstrap
 
-import parsleyjs from 'parsleyjs';
-import Bootstrap from 'bootstrap';
 import Ractive from 'ractive';
 Ractive.DEBUG = true;
 
