@@ -1,5 +1,6 @@
 module.exports.libs = [
   'logdown',
+  'axios',
   'crossroads',
   'ractive',
   'hasher',

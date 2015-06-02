@@ -3,8 +3,7 @@ import html from './home.ract'
 
 class Home {
 
-  constructor(auth, events, http) {
-    this.http = http;
+  constructor(auth, events) {
     this.auth = auth;
     this.events = events;
   }
@@ -28,10 +27,11 @@ class Home {
   signIn(username, password) {
     this.auth.login(username, password)
       .then((user) => this.goToWelcomeScreen(),
-            (err) => this.showError());
+            (err) => this.showError(err));
   }
 
-  showError() {
+  showError(err) {
+    console.log(err);
     this.ractive.set('showError', true);
   }
 
