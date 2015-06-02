@@ -15,7 +15,6 @@ var paths = config.paths;
 module.exports = function(gulp) {
   return function() {
     var b = browserify({
-      insertGlobals: true,
       debug: true
     });
 

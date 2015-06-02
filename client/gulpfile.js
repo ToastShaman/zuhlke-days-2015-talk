@@ -24,7 +24,7 @@ gulp.task('serve', ['build-all'], function() {
 gulp.task('test', function(done) {
   var karma = require('karma').server;
   karma.start({
-    configFile: __dirname + './test/karma.conf.js',
+    configFile: __dirname + '/test/karma.conf.js',
     singleRun: true
   }, done);
 });

@@ -1,21 +1,24 @@
 import Ractive from 'ractive';
 import html from './welcome.ract';
 import navbar from '../navbar/navbar.ract';
+import storage from '../services/storage.es6';
 
 class Welcome {
 
-  constructor(router) {
-    this.router = router;
+  constructor(auth, events) {
+    this.events = events;
+    this.auth = auth;
   }
 
-  render(name) {
+  render() {
+    let loggedInUser = storage.memory.get('user');
     this.ractive = new Ractive({
       el: 'view',
       template: html,
       partials: {navbar: navbar},
       data: function() {
         return {
-          name: name
+          user: loggedInUser
         };
       }
     });
@@ -24,7 +27,12 @@ class Welcome {
   }
 
   logout() {
-    this.unrender().then(() => this.router.transitionTo('/home/'));
+    this.auth.clearLogin();
+    this.events.routing.transitionTo.dispatch('/home', this);
+  }
+
+  isProtected() {
+    return true;
   }
 
   unrender() {

@@ -1,8 +1,9 @@
 class Auth {
 
-  constructor(http, store) {
+  constructor(http, store, events) {
     this.store = store;
     this.http = http;
+    this.events = events;
   }
 
   login(username, password) {
@@ -24,13 +25,19 @@ class Auth {
     if (accessToken) {
       this.http.defaults.headers.common['X-Auth-Token'] = accessToken;
     }
-    return this.login();
+    this.login().then(
+      (user) => this.events.auth.restoredLogin.dispatch(user),
+      (err) => this.events.auth.failedToRestoreLogin.dispatch(err));
   }
 
   clearLogin() {
     delete this.http.defaults.headers.common['X-Auth-Token'];
     this.store.local.remove('accessToken');
     this.store.memory.remove('user');
+  }
+
+  loggedInUser() {
+    return this.store.memory.get('user');
   }
 }
 

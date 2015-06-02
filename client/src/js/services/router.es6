@@ -1,15 +1,20 @@
 import crossroads from 'crossroads';
 import hasher from 'hasher';
 import _ from 'lodash';
-import Preconditions from "preconditions";
-let preconditions = Preconditions.singleton();
 
 class Router {
 
+  constructor(auth, events) {
+    this.auth = auth;
+    this.events = events;
+  }
+
   initialise() {
-    hasher.initialized.add(this.parseHash, this);
-    hasher.changed.add(this.parseHash, this);
+    hasher.initialized.add(this.parseHash);
+    hasher.changed.add(this.parseHash);
     hasher.init();
+
+    crossroads.bypassed.add(() => this.bypassedHandler());
   }
 
   parseHash(newHash, oldHash) {
@@ -17,15 +22,23 @@ class Router {
   }
 
   addRoute(path, view) {
-    preconditions
-      .shouldBeFunction(view.render)
-      .shouldBeFunction(view.unrender);
-
     let route = crossroads.addRoute(path, _.bind(view.render, view));
-    route.switched.add(function() {
-      // unrender the view when the user clicks the back button
-      view.unrender();
-    });
+    route.matched.add(() => this.matchedHandler(path, view));
+    route.switched.add(() => this.switchedHandler(view));
+  }
+
+  bypassedHandler() {
+    this.events.routing.notFound.dispatch();
+  }
+
+  switchedHandler(view) {
+    view.unrender();
+  }
+
+  matchedHandler(path, view) {
+    if (view.isProtected() && !this.auth.loggedInUser()) {
+      view.unrender().then(() => this.events.routing.accessDenied.dispatch(path));
+    }
   }
 
   currentHash() {
@@ -37,4 +50,4 @@ class Router {
   }
 }
 
-export default new Router();
+export default Router;
