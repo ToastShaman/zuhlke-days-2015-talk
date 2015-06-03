@@ -40,12 +40,18 @@ auth.restoreLogin().then(function() {
 
 events.auth.restoredLogin.add(function(err, user) {
   let page = 'welcome';
-  if (err) {
+
+  if (err && err.status === 401) {
     logger.warn('a failed login attempt has been made');
-    page = 'home';
-  } else {
-    logger.log('the login credentials have been restored');
+    return router.transitionTo('home')
   }
+
+  if (err) {
+    logger.warn('connection to the API has been lost');
+    return router.transitionTo('sorry')
+  }
+
+  logger.log('the login credentials have been restored');
   router.transitionTo(page);
 });
 
