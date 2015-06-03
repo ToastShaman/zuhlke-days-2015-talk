@@ -27,6 +27,10 @@ module.exports.paths = {
     src: ['./node_modules/bootstrap/dist/fonts/*'],
     dest: './dist/fonts/'
   },
+  images: {
+    src: ['./src/img/*'],
+    dest: './dist/img/'
+  },
   less: {
     src: './src/css/styles.less',
     dest: './dist/css/',

@@ -1,7 +1,7 @@
 <div class="home background"></div>
 <div class="container home">
     <div class="card card-container">
-        <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
+        <img id="profile-img" class="profile-img-card" src="img/avatar_2x.png"/>
 
         <p id="profile-name" class="profile-name-card"></p>
 
@@ -31,7 +31,7 @@
                     disabled="{{!parsleyValid}}">Sign in</button>
         </form>
         {{#if showError}}
-        <p class="bg-danger">Your username/password is invalid!</p>
+        <p class="text-danger">Your username/password is invalid!</p>
         {{/if}}
     </div>
 </div>
