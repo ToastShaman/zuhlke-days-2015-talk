@@ -33,18 +33,20 @@ axios.interceptors.request.use(function(config) {
 router.addRoute('home', new Home(auth, events));
 router.addRoute('sorry', new Sorry());
 router.addRoute('welcome', new Welcome(auth, events));
-router.initialise();
 
-auth.restoreLogin();
-
-events.auth.restoredLogin.add(function(user) {
-  logger.log('the login credentials have been restored');
-  router.transitionTo('welcome');
+auth.restoreLogin().then(function() {
+  router.initialise();
 });
 
-events.auth.failedToRestoreLogin.add(function(err) {
-  logger.warn('a failed login attempt has been made');
-  router.transitionTo('home');
+events.auth.restoredLogin.add(function(err, user) {
+  let page = 'welcome';
+  if (err) {
+    logger.warn('a failed login attempt has been made');
+    page = 'home';
+  } else {
+    logger.log('the login credentials have been restored');
+  }
+  router.transitionTo(page);
 });
 
 events.routing.accessDenied.add(function(path) {

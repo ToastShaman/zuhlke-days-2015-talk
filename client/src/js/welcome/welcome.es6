@@ -28,7 +28,7 @@ class Welcome {
 
   logout() {
     this.auth.clearLogin();
-    this.events.routing.transitionTo.dispatch('/home', this);
+    this.events.routing.transitionTo.dispatch('home', this);
   }
 
   isProtected() {

@@ -13,8 +13,7 @@ class Events {
     };
 
     this.auth = {
-      restoredLogin: new signals.Signal(),
-      failedToRestoreLogin: new signals.Signal()
+      restoredLogin: new signals.Signal()
     }
   }
 }

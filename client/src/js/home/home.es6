@@ -36,7 +36,7 @@ class Home {
   }
 
   goToWelcomeScreen() {
-    this.events.routing.transitionTo.dispatch('/welcome', this);
+    this.events.routing.transitionTo.dispatch('welcome', this);
   }
 
   isProtected() {

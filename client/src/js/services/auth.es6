@@ -20,9 +20,9 @@ class Auth {
   }
 
   restoreLogin() {
-    this.login().then(
-      (user) => this.events.auth.restoredLogin.dispatch(user),
-      (err) => this.events.auth.failedToRestoreLogin.dispatch(err));
+    return this.login().then(
+      (user) => this.events.auth.restoredLogin.dispatch(null, user),
+      (err) => this.events.auth.restoredLogin.dispatch(err));
   }
 
   clearLogin() {

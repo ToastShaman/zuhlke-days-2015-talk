@@ -1,35 +1,38 @@
-import sinon from 'sinon';
+import axios from 'axios';
 
-import storage from 'services/storage.es6';
-import httpBackend from 'services/httpBackend.es6';
-import Http from 'services/http.es6';
-import events from 'services/events.es6';
 import Auth from 'services/auth.es6';
-
-import authSuccessfulResponse from './auth-successful-response.es6';
+import storage from 'services/storage.es6';
+import events from 'services/events.es6';
 
 describe('The Authorization Service', function() {
 
-  let auth, http, server;
+  let auth;
 
   beforeEach(function() {
-    http = new Http(httpBackend, events);
-    auth = new Auth(http, storage);
-    server = sinon.fakeServer.create();
+    auth = new Auth(axios, storage, events);
+    jasmine.Ajax.install();
   });
 
   afterEach(function() {
-    server.restore();
+    jasmine.Ajax.uninstall();
   });
 
   it('should authenticate a user successfully', function(done) {
-    server.respondWith('POST', 'http://localhost:3000/login', authSuccessfulResponse);
+    jasmine.Ajax.stubRequest('http://localhost:8080/login').andReturn({
+      'status': 200,
+      'contentType': 'application/json',
+      'responseText': JSON.stringify({
+        'accessToken': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ',
+        'user': {
+          firstname: 'John'
+        }
+      })
+    });
+
     auth.login('username', 'password').then(function(user) {
       expect(storage.memory.get('user').firstname).toBe('John');
-      expect(storage.local.get('accessToken')).toBe('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
-      expect(http.defaults.headers.common['X-Auth-Token']).toBe('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiYWRtaW4iOnRydWV9.TJVA95OrM7E2cBab30RMHrHDcEfxjoYZgeFONFh7HgQ');
+      expect(storage.local.get('accessToken')).toBeDefined();
       done();
     });
-    server.respond();
   });
 });
