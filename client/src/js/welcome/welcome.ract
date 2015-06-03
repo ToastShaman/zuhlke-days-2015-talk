@@ -1,2 +1,7 @@
 {{>navbar}}
-<h1>Hello [[user.firstname]] [[user.lastname]]</h1>
+<div class="sub-header">
+    <div class="white-text">[[user.firstname]] [[user.lastname]]</div>
+</div>
+<div class="container">
+
+</div>

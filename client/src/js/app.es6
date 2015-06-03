@@ -1,3 +1,5 @@
+import configuration from 'configuration';
+
 import Logdown  from 'logdown';
 
 import Parsely from 'parsleyjs'; // initialise Parsley
@@ -21,7 +23,7 @@ import Sorry from './sorry/sorry.es6';
 import NotFound from './404/404.es6';
 
 let logger = new Logdown({prefix: 'app'});
-let auth = new Auth(axios, storage, events);
+let auth = new Auth(axios, storage, events, configuration);
 let router = new Router(auth, events);
 
 axios.interceptors.request.use(function(config) {

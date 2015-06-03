@@ -11,6 +11,7 @@ var uglify = require('gulp-uglify');
 var config = require('./config.js');
 var libs = config.libs;
 var paths = config.paths;
+var environment = gutil.env.env ? gutil.env.env : 'dev';
 
 module.exports = function(gulp) {
   return function() {
@@ -23,6 +24,7 @@ module.exports = function(gulp) {
     });
 
     b.add(paths.js.src);
+    b.require('./config-' + environment + '.es6', {expose: 'configuration'});
     b.transform({extensions: ['.ract']}, ractivate);
     b.transform({extensions: ['.es6']}, babelify);
 

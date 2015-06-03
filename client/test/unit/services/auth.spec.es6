@@ -9,7 +9,7 @@ describe('The Authorization Service', function() {
   let auth;
 
   beforeEach(function() {
-    auth = new Auth(axios, storage, events);
+    auth = new Auth(axios, storage, events, {api: 'http://foobar.com'});
     jasmine.Ajax.install();
   });
 
@@ -18,7 +18,7 @@ describe('The Authorization Service', function() {
   });
 
   it('should authenticate a user successfully', function(done) {
-    jasmine.Ajax.stubRequest('http://localhost:8080/login').andReturn({
+    jasmine.Ajax.stubRequest('http://foobar.com/login').andReturn({
       'status': 200,
       'contentType': 'application/json',
       'responseText': JSON.stringify({

@@ -15,7 +15,12 @@ module.exports = function(config) {
       debug: true,
       paths: ['../node_modules', '../src/js'],
       transform: [['ractivate', {extensions: ['.ract']}], 'babelify'],
-      extensions: ['.ract', '.es6']
+      extensions: ['.ract', '.es6'],
+      configure: function(bundle) {
+        bundle.on('prebundle', function() {
+          bundle.add('../config-dev.es6', {expose: 'configuration'});
+        });
+      }
     },
 
     files: [

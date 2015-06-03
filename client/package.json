@@ -4,6 +4,11 @@
   "description": "Building modular Single Page Web Applications without Frameworks",
   "license": "Apache-2.0",
   "private": true,
+  "scripts": {
+    "start": "gulp --env=dev",
+    "start-production": "gulp --env=production",
+    "karma": "karma start test/karma.conf"
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.2.0",
     "babelify": "^6.1.2",
