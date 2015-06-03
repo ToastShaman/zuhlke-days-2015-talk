@@ -1,4 +1,4 @@
-<div class="background"></div>
+<div class="home background"></div>
 <div class="container home">
     <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"/>
@@ -33,8 +33,5 @@
         {{#if showError}}
         <p class="bg-danger">Your username/password is invalid!</p>
         {{/if}}
-        <a href="#/welcome/clicked" class="forgot-password">
-            Forgot the password?
-        </a>
     </div>
 </div>

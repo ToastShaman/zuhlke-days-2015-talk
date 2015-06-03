@@ -1,9 +1,6 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1>Oops, something went wrong!</h1>
-        <p>
-            We are currently experiencing technical difficulties. Our apologies for any inconvenience this may
-            cause whilst we work to resolve the issue.
-        </p>
-    </div>
+<div class="sorry background"></div>
+<div class="sorry container">
+    <h1>Oops, something went wrong!</h1>
+    <h2>We are currently experiencing technical difficulties. Our apologies for any inconvenience this may
+        cause whilst we work to resolve the issue.</h2>
 </div>

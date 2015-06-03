@@ -18,6 +18,7 @@ import axios from 'axios';
 import Welcome from './welcome/welcome.es6';
 import Home from './home/home.es6';
 import Sorry from './sorry/sorry.es6';
+import NotFound from './404/404.es6';
 
 let logger = new Logdown({prefix: 'app'});
 let auth = new Auth(axios, storage, events);
@@ -31,8 +32,9 @@ axios.interceptors.request.use(function(config) {
 });
 
 router.addRoute('home', new Home(auth, events));
-router.addRoute('sorry', new Sorry());
 router.addRoute('welcome', new Welcome(auth, events));
+router.addRoute('sorry', new Sorry());
+router.addRoute('404', new NotFound());
 
 auth.restoreLogin().then(function() {
   router.initialise();
@@ -62,7 +64,7 @@ events.routing.accessDenied.add(function(path) {
 
 events.routing.notFound.add(function() {
   logger.log('the entered path could not be found');
-  router.transitionTo('sorry');
+  router.transitionTo('404');
 });
 
 events.routing.transitionTo.add(function(path, view) {
