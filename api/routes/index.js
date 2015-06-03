@@ -9,22 +9,26 @@ router.post('/login', function(req, res, next) {
 
   if (accessToken) {
     jwt.verify(accessToken, 'secretKey', function(err, decoded) {
-      var existingUser = req.app.locals.users.findOne({'username': decoded.username});
-      if (existingUser) {
-        return res.json({
-          user: existingUser,
-          accessToken: jwt.sign({username: existingUser.username}, 'secretKey')
-        });
+      if (!err) {
+        var existingUser = req.app.locals.users.findOne({'username': decoded.username});
+        if (existingUser) {
+          return res.json({
+            user: existingUser,
+            accessToken: jwt.sign({username: existingUser.username}, 'secretKey')
+          });
+        }
       }
     });
   }
 
-  var existingUser = req.app.locals.users.findOne({'username': username});
-  if (existingUser && existingUser.password === password) {
-    return res.json({
-      user: existingUser,
-      accessToken: jwt.sign({username: existingUser.username}, 'secretKey')
-    });
+  if (username && password) {
+    var existingUser = req.app.locals.users.findOne({'username': username});
+    if (existingUser && existingUser.password === password) {
+      return res.json({
+        user: existingUser,
+        accessToken: jwt.sign({username: existingUser.username}, 'secretKey')
+      });
+    }
   }
 
   var err = new Error('Invalid username/password');
