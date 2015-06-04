@@ -46,11 +46,11 @@ body {
   line-height: 1.2;
   letter-spacing: normal;
   text-transform: uppercase;
-  text-shadow: none;
-  word-wrap: break-word; }
+  text-shadow: none; }
+  /*word-wrap: break-word; }*/
 
 .reveal h1 {
-  font-size: 2em; }
+  font-size: 1.8em; }
 
 .reveal h2 {
   font-size: 1.6em; }
@@ -117,9 +117,10 @@ body {
   position: relative;
   width: 70%;
   margin: 20px auto;
-  padding: 5px;
+  padding: 20px;
   font-style: italic;
-  background: rgba(255, 255, 255, 0.05);
+  font-size: 0.6em;
+  background: rgba(255, 255, 255, 0.4);
   box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.2); }
 
 .reveal blockquote p:first-child, .reveal blockquote p:last-child {
@@ -135,10 +136,13 @@ body {
   margin: 20px auto;
   text-align: left;
   font-size: 0.55em;
-  font-family: monospace;
+  font-family: 'Inconsolata', monospace;
   line-height: 1.2em;
   word-wrap: break-word;
   box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3); }
+
+.inline-code {
+  font-family: 'Inconsolata', monospace !important; }
 
 .reveal code {
   font-family: 'Inconsolata', monospace; }
@@ -273,3 +277,11 @@ body {
  *********************************************/
 .reveal .slide-number {
   color: #fff; }
+
+
+.z {
+  background-image: url('http://www.zuehlke.com/static/images/base/base-1x-s016cec0915.png');
+  background-size: 135px 275px;
+  background-position: 0 -140px;
+  height: 135px;
+  width: 135px; }

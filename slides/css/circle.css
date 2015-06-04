@@ -18,3 +18,11 @@
   bottom: 28px;
   left: 117px;
 }
+
+
+.z {
+  background-image: url('http://www.zuehlke.com/static/images/base/base-1x-s016cec0915.png');
+  background-size: 135px 275px;
+  background-position: 0 -140px;
+  height: 135px;
+  width: 135px; }
