@@ -1,15 +1,15 @@
 class Auth {
 
-  constructor(axios, store, events, configuration) {
+  constructor(http, store, events, configuration) {
     this.store = store;
-    this.axios = axios;
+    this.http = http;
     this.events = events;
     this.configuration = configuration;
   }
 
   login(username, password) {
     let payload = (username && password) ? {username, password} : undefined;
-    return this.axios.post(this.configuration.api + '/login', payload).then((response) => {
+    return this.http.post(this.configuration.api + '/login', payload).then((response) => {
       let accessToken = response.data.accessToken;
       let user = response.data.user;
 
