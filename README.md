@@ -1,14 +1,14 @@
 # Building modular Single Page Web Applications without Frameworks
 
-With the current churn of ever more JavaScript frameworks and libraries this talk explores the art of 
-using modern JavaScript programming practices to build highly modular single page applications using 
+With the current churn of ever more JavaScript frameworks and libraries this talk explores the art of
+using modern JavaScript programming practices to build highly modular single page applications using
 dedicated libraries rather than one size fits all frameworks like AngularJS.
 
-I will explore the feasibility of structuring the application into single cohesive modules, using a 
-dedicated library for routing, rendering the Dom, testing and show the minimum amount of code needed 
-to integrate the various libraries. 
+I will explore the feasibility of structuring the application into single cohesive modules, using a
+dedicated library for routing, rendering the Dom, testing and show the minimum amount of code needed
+to integrate the various libraries.
 
-This should give us a highly modular application who’s design and architecture can evolve with a 
+This should give us a highly modular application who’s design and architecture can evolve with a
 project’s requirements.
 
 See [2015: The End of the Monolithic JavaScript Framework](https://andywalpole.me/#!/blog/142134/2015-the-end-the-monolithic-javascript-framework)
@@ -26,3 +26,4 @@ See [The State of JavaScript in 2015](http://www.breck-mckye.com/blog/2014/12/th
 * Ractive.js - Ractive.js is a template-driven UI library
 * axios - Promise based HTTP client for the browser and node.js
 * store.js - localStorage wrapper for all browsers without using cookies or flash.
+* signals - Custom event/messaging system for JavaScript
