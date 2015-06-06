@@ -18,12 +18,14 @@ class Welcome {
       partials: {navbar: navbar},
       data: function() {
         return {
-          user: loggedInUser
+          user: loggedInUser,
+          sms: []
         };
       }
     });
 
     this.ractive.on('logout', () => this.logout());
+    this.events.sms.receivedSms.add((message) => this.ractive.push('sms', message));
   }
 
   logout() {
@@ -36,6 +38,7 @@ class Welcome {
   }
 
   unrender() {
+    this.events.sms.receivedSms.removeAll();
     return this.ractive.teardown();
   }
 }

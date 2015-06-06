@@ -14,7 +14,11 @@ class Events {
 
     this.auth = {
       restoredLogin: new signals.Signal()
-    }
+    };
+
+    this.sms = {
+      receivedSms: new signals.Signal()
+    };
   }
 }
 

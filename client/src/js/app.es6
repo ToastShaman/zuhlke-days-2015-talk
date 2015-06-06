@@ -1,5 +1,6 @@
 import configuration from 'configuration';
 
+import io from 'socket.io-client';
 import Logdown  from 'logdown';
 
 import Parsely from 'parsleyjs'; // initialise Parsley
@@ -31,6 +32,11 @@ axios.interceptors.request.use(function(config) {
   if (accessToken) config.headers['X-Auth-Token'] = accessToken;
   else delete config.headers['X-Auth-Token'];
   return config;
+});
+
+let socket = io(configuration.api);
+socket.on('receivedSms', function(message) {
+  events.sms.receivedSms.dispatch(message);
 });
 
 router.addRoute('home', new Home(auth, events));

@@ -10,7 +10,8 @@ module.exports.libs = [
   'rsvp',
   'bootstrap',
   'store',
-  'parsleyjs'
+  'parsleyjs',
+  'socket.io-client'
 ];
 
 module.exports.paths = {

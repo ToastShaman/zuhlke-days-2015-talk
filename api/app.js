@@ -9,12 +9,14 @@ var bodyParser = require('body-parser');
 // routes
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var sms = require('./routes/sms');
 
 var app = express();
 
 // database - lokijs
 app.locals.db = new loki('loki.json');
 app.locals.users = app.locals.db.addCollection('users');
+app.locals.sms = app.locals.db.addCollection('sms');
 app.locals.users.insert({
   username: 'arthur@nudge.com',
   firstname: 'Arthur',
@@ -42,6 +44,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+app.use('/sms', sms);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

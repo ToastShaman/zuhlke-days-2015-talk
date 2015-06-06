@@ -14,6 +14,8 @@
     "jsonwebtoken": "^5.0.1",
     "lokijs": "^1.2.5",
     "morgan": "~1.5.3",
-    "serve-favicon": "~2.2.1"
+    "ngrok": "^0.1.99",
+    "serve-favicon": "~2.2.1",
+    "socket.io": "^1.3.5"
   }
 }

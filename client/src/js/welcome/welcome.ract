@@ -1,7 +1,26 @@
 {{>navbar}}
 <div class="sub-header">
-    <div class="white-text">[[user.firstname]] [[user.lastname]]</div>
+    <div class="white-text">[[user.firstname]] [[user.lastname]] / SMS Dashboard</div>
 </div>
+
 <div class="container">
+
+    {{#each sms}}
+    <div class="row">
+        <div class="col-sm-1">
+            <div class="thumbnail">
+                <img class="img-responsive user-photo" src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <strong>{{From}}</strong> <span class="text-muted">({{FromCountry}})</span>
+                </div>
+                <div class="panel-body">{{Body}}</div>
+            </div>
+        </div>
+    </div>
+    {{/each}}
 
 </div>
