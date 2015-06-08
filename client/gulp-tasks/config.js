@@ -5,7 +5,6 @@ module.exports.libs = [
   'ractive',
   'hasher',
   'lodash',
-  'preconditions',
   'signals',
   'rsvp',
   'bootstrap',

@@ -102,9 +102,91 @@
 				</section>
 
 				<section data-background="#fdc162">
-					<h2>MicroJS.com</h2>
-					<p>A micro-site for micro-frameworks</p>
-					<p>Microjs.com helps you discover the most compact-but-powerful microframeworks, and makes it easy for you to pick one that’ll work for you.</p>
+					<section>
+						<h2>MicroJS.com</h2>
+						<p>A micro-site for micro-frameworks</p>
+						<p>Microjs.com helps you discover the most compact-but-powerful microframeworks, and makes it easy for you to pick one that’ll work for you.</p>
+					</section>
+
+					<section>
+						<h2>Gulp and Babel</h2>
+					</section>
+
+					<section>
+						<h2>Ractive.js</h2>
+					</section>
+
+					<section>
+						<h2>Crossroads.js</h2>
+						<pre><code data-trim>
+//setup crossroads
+crossroads.addRoute('foo');
+crossroads.addRoute('lorem/ipsum');
+crossroads.routed.add(console.log, console); //log all routes
+
+//setup hasher
+function parseHash(newHash, oldHash){
+  crossroads.parse(newHash);
+}
+hasher.initialized.add(parseHash); //parse initial hash
+hasher.changed.add(parseHash); //parse hash changes
+hasher.init(); //start listening for history change
+
+//update URL fragment generating new history record
+hasher.setHash('lorem/ipsum');
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>axios</h2>
+						<pre><code data-trim>
+// Make a request for a user with a given ID
+axios.get('/user?ID=12345')
+  .then(function (response) {
+    console.log(response);
+  })
+  .catch(function (response) {
+    console.log(response);
+  });
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Signal.js</h2>
+						<pre><code data-trim>
+//custom object that dispatch a `started` signal
+var myObject = {
+  started : new signals.Signal()
+};
+function onStarted(param1, param2){
+  alert(param1 + param2);
+}
+myObject.started.add(onStarted); //add listener
+myObject.started.dispatch('foo', 'bar'); //dispatch signal passing custom parameters
+myObject.started.remove(onStarted); //remove a single listener
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>RSVP.js</h2>
+						<pre><code data-trim>
+var RSVP = require('rsvp');
+
+var promise = new RSVP.Promise(function(resolve, reject) {
+	resolve(value);
+});
+
+promise.then(function(value) {
+	// success
+}, function(value) {
+	// failure
+});
+						</code></pre>
+					</section>
+
+					<section>
+						<h2>Parsley.js</h2>
+					</section>
 				</section>
 
 				<!-- <section data-background="#fd6a62">

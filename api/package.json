@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "ngrok": "ngrok 8080",
     "start": "node ./bin/www"
   },
   "dependencies": {
