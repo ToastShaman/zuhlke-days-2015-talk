@@ -5,13 +5,14 @@ var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var gutil = require('gulp-util');
 var source = require('vinyl-source-stream');
-var streamify = require('gulp-streamify');
 var uglify = require('gulp-uglify');
+var gulpif = require('gulp-if');
 
 var config = require('./config.js');
 var libs = config.libs;
 var paths = config.paths;
 var environment = gutil.env.env ? gutil.env.env : 'dev';
+var isProduction = environment === 'production';
 
 module.exports = function(gulp) {
   return function() {
@@ -33,7 +34,7 @@ module.exports = function(gulp) {
       .pipe(source('app.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({loadMaps: true}))
-      .pipe(streamify(uglify()))
+      .pipe(gulpif(isProduction, uglify()))
       .pipe(sourcemaps.write('./'))
       .pipe(gulp.dest(paths.js.dest));
   }
