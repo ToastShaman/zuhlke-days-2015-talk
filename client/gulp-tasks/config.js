@@ -1,17 +1,12 @@
-module.exports.libs = [
-  'logdown',
-  'axios',
-  'crossroads',
-  'ractive',
-  'hasher',
-  'lodash',
-  'signals',
-  'rsvp',
-  'bootstrap',
-  'store',
-  'parsleyjs',
-  'socket.io-client'
-];
+var _ = require('lodash');
+var packageJson = require('../package.json');
+
+module.exports.libs = _(packageJson.dependencies)
+  .keys()
+  .remove(function(n) {
+    return n !== 'jquery'
+  })
+  .value();
 
 module.exports.paths = {
   js: {
