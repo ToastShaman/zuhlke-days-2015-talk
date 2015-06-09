@@ -1,3 +1,4 @@
 export default {
-  api: 'http://production/api'
+  api: 'http://production/api',
+  ractiveDebug: false
 };

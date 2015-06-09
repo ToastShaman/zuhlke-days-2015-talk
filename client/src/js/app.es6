@@ -7,7 +7,7 @@ import Parsely from 'parsleyjs';
 import Bootstrap from 'bootstrap';
 
 import Ractive from 'ractive';
-Ractive.DEBUG = true;
+Ractive.DEBUG = configuration.ractiveDebug;
 
 import parsleyDecorator from './services/parsley-ractive-decorator.es6';
 Ractive.decorators.parsley = parsleyDecorator;
