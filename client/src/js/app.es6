@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import configuration from 'configuration';
 
 import io from 'socket.io-client';
@@ -36,7 +37,7 @@ http.interceptors.request.use(function(config) {
 
 let socket = io(configuration.api);
 socket.on('receivedSms', function(message) {
-  events.sms.receivedSms.dispatch(message);
+  events.sms.receivedSms.dispatch(Immutable.Map(message));
 });
 
 router.addRoute('home', new Home(auth, events));

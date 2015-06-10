@@ -1,3 +1,5 @@
+import Immutable from 'immutable';
+
 class Auth {
 
   constructor(http, store, events, configuration) {
@@ -11,7 +13,7 @@ class Auth {
     let payload = (username && password) ? {username, password} : undefined;
     return this.http.post(this.configuration.api + '/login', payload).then((response) => {
       let accessToken = response.data.accessToken;
-      let user = response.data.user;
+      let user = Immutable.Map(response.data.user);
 
       this.store.local.set('accessToken', accessToken);
       this.store.memory.set('user', user);

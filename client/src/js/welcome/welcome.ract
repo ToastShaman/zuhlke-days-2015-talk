@@ -1,6 +1,6 @@
 {{>navbar}}
 <div class="sub-header">
-    <div class="white-text">[[user.firstname]] [[user.lastname]] / SMS Dashboard</div>
+    <div class="white-text">[[user.get('firstname')]] [[user.get('lastname')]] / SMS Dashboard</div>
 </div>
 
 <div class="container">

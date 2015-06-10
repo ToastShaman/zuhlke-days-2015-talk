@@ -11,14 +11,13 @@ class Welcome {
   }
 
   render(name) {
-    let loggedInUser = storage.memory.get('user');
     this.ractive = new Ractive({
       el: 'view',
       template: html,
       partials: {navbar: navbar},
       data: function() {
         return {
-          user: loggedInUser,
+          user: storage.memory.get('user'),
           sms: [],
           name: name
         };
