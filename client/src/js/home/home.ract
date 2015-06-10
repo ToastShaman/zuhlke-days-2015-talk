@@ -5,7 +5,7 @@
 
         <p id="profile-name" class="profile-name-card"></p>
 
-        <form class="form-signin" decorator="parsley" autocomplete="off">
+        <form id="loginForm" class="form-signin" decorator="parsley" autocomplete="off" on-submit="signIn">
             <span id="reauth-email" class="reauth-email"></span>
 
             <div class="form-group">

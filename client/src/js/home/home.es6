@@ -25,13 +25,12 @@ class Home {
   }
 
   signIn(username, password) {
-    this.auth.login(username, password)
-      .then((user) => this.goToWelcomeScreen(),
-            (err) => this.showError(err));
+    this.auth.login(username, password).then(
+      (user) => this.goToWelcomeScreen(),
+      (err) => this.showError(err));
   }
 
   showError(err) {
-    console.log(err);
     this.ractive.set('showError', true);
   }
 
