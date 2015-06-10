@@ -10,7 +10,7 @@ class Welcome {
     this.auth = auth;
   }
 
-  render() {
+  render(name) {
     let loggedInUser = storage.memory.get('user');
     this.ractive = new Ractive({
       el: 'view',
@@ -19,7 +19,8 @@ class Welcome {
       data: function() {
         return {
           user: loggedInUser,
-          sms: []
+          sms: [],
+          name: name
         };
       }
     });

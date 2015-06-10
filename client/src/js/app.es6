@@ -40,7 +40,7 @@ socket.on('receivedSms', function(message) {
 });
 
 router.addRoute('home', new Home(auth, events));
-router.addRoute('welcome', new Welcome(auth, events));
+router.addRoute('welcome/:name:', new Welcome(auth, events));
 router.addRoute('sorry', new Sorry());
 router.addRoute('404', new NotFound());
 
@@ -49,8 +49,6 @@ auth.restoreLogin().then(function() {
 });
 
 events.auth.restoredLogin.add(function(err, user) {
-  let page = 'welcome';
-
   if (err && err.status === 401) {
     logger.warn('a failed login attempt has been made');
     return router.transitionTo('home')
@@ -62,7 +60,7 @@ events.auth.restoredLogin.add(function(err, user) {
   }
 
   logger.log('the login credentials have been restored');
-  router.transitionTo(page);
+  router.transitionTo('welcome');
 });
 
 events.routing.accessDenied.add(function(path) {
