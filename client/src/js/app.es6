@@ -37,7 +37,7 @@ http.interceptors.request.use(function(config) {
 
 let socket = io(configuration.api);
 socket.on('receivedSms', function(message) {
-  events.sms.receivedSms.dispatch(Immutable.Map(message));
+  events.sms.receivedSms.dispatch(Immutable.fromJS(message));
 });
 
 router.addRoute('home', new Home(auth, events));
@@ -76,7 +76,5 @@ events.routing.notFound.add(function() {
 
 events.routing.transitionTo.add(function(path, view) {
   logger.log('transitioning to `' + path + '`');
-  view.unrender().then(function() {
-    router.transitionTo(path);
-  });
+  view.unrender().then(() => router.transitionTo(path));
 });

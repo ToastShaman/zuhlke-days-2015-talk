@@ -13,7 +13,7 @@ class Auth {
     let payload = (username && password) ? {username, password} : undefined;
     return this.http.post(this.configuration.api + '/login', payload).then((response) => {
       let accessToken = response.data.accessToken;
-      let user = Immutable.Map(response.data.user);
+      let user = Immutable.fromJS(response.data.user);
 
       this.store.local.set('accessToken', accessToken);
       this.store.memory.set('user', user);
@@ -24,8 +24,8 @@ class Auth {
 
   restoreLogin() {
     return this.login().then(
-      (user) => this.events.auth.restoredLogin.dispatch(null, user),
-      (err) => this.events.auth.restoredLogin.dispatch(err));
+      user => this.events.auth.restoredLogin.dispatch(null, user),
+      err => this.events.auth.restoredLogin.dispatch(err));
   }
 
   clearLogin() {
