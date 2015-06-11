@@ -25,7 +25,7 @@ class Welcome {
     });
 
     this.ractive.on('logout', () => this.logout());
-    this.events.sms.receivedSms.add(message => this.ractive.push('sms', message));
+    this.events.sms.receivedSms.add(message => this.ractive.push('sms', message.toJS()));
   }
 
   logout() {
