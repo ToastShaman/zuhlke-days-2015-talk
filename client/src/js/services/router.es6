@@ -7,6 +7,7 @@ class Router {
   constructor(auth, events) {
     this.auth = auth;
     this.events = events;
+    this.initialised = false;
   }
 
   initialise() {

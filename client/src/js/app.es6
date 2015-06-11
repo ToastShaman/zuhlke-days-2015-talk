@@ -45,9 +45,7 @@ router.addRoute('welcome/:name:', new Welcome(auth, events));
 router.addRoute('sorry', new Sorry());
 router.addRoute('404', new NotFound());
 
-auth.restoreLogin().then(function() {
-  router.initialise();
-});
+auth.restoreLogin().then(() => router.initialise());
 
 events.auth.restoredLogin.add(function(err, user) {
   if (err && err.status === 401) {

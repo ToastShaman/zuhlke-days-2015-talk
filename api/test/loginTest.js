@@ -2,7 +2,7 @@ var should = require('should');
 var request = require('supertest');
 var app = require('../src/app.js');
 
-describe('GET /login', function() {
+describe('/login', function() {
 
   it('should respond with a 400 if the posted data is not confirming to the schema', function(done) {
     request(app)
@@ -21,7 +21,7 @@ describe('GET /login', function() {
       .expect(200, done);
   });
 
-  it('should respond with a 200 and a auth token', function(done) {
+  it('should respond with a 200 and an auth token', function(done) {
     request(app)
       .post('/login')
       .set('Content-Type', 'application/json')

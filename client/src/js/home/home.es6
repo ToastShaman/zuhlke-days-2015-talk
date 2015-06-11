@@ -26,7 +26,8 @@ class Home {
 
   signIn(username, password) {
     this.auth.login(username, password)
-      .then(user => this.goToWelcomeScreen(), err => this.showError(err));
+      .then(user => this.goToWelcomeScreen())
+      .catch(err => this.showError(err));
   }
 
   showError(err) {

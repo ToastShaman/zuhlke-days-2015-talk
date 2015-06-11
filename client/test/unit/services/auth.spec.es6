@@ -17,7 +17,7 @@ describe('The Authorization Service', function() {
     jasmine.Ajax.uninstall();
   });
 
-  fit('should authenticate a user successfully', function(done) {
+  it('should authenticate a user successfully', function(done) {
     jasmine.Ajax.stubRequest('http://foobar.com/login').andReturn({
       'status': 200,
       'contentType': 'application/json',
