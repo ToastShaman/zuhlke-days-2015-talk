@@ -9,6 +9,9 @@ class Auth {
     this.configuration = configuration;
   }
 
+  /**
+   * @returns {Promise<Immutable.Map<User>>}
+   */
   login(username, password) {
     let payload = (username && password) ? {username, password} : undefined;
     return this.http.post(this.configuration.api + '/login', payload).then((response) => {

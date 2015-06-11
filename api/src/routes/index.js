@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var jwt = require('jsonwebtoken');
+var paperwork = require('paperwork');
+
+var schema = {
+  username: String,
+  password: String
+}
 
 function invalidUsernameOrPassword() {
   var err = new Error('Invalid username/password');
@@ -19,7 +25,7 @@ function findOne(username, db) {
   return db.findOne({'username': username});
 }
 
-router.post('/login', function(req, res, next) {
+router.post('/login', paperwork.accept(schema), function(req, res, next) {
   var username = req.body.username;
   var password = req.body.password;
   var accessToken = req.get('X-Auth-Token');
@@ -38,9 +44,7 @@ router.post('/login', function(req, res, next) {
     if (existingUser && existingUser.password === password) return res.json(user(existingUser));
     return next(invalidUsernameOrPassword());
   }
-  else {
-    return next(invalidUsernameOrPassword());
-  }
+  else return next(invalidUsernameOrPassword());
 });
 
 module.exports = router;

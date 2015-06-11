@@ -7,17 +7,17 @@
   "scripts": {
     "start": "gulp --env=dev",
     "start-production": "gulp --env=production",
-    "karma": "karma start test/karma.conf"
+    "test": "karma start test/karma.conf"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.0",
     "babelify": "^6.1.2",
-    "browser-sync": "^2.7.6",
-    "browserify": "^10.2.3",
+    "browser-sync": "^2.7.7",
+    "browserify": "^10.2.4",
     "gulp": "^3.9.0",
     "gulp-if": "^1.2.5",
     "gulp-less": "^3.0.3",
-    "gulp-minify-css": "^1.1.4",
+    "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",
     "gulp-postcss": "^5.1.8",
     "gulp-sourcemaps": "^1.5.2",
@@ -27,13 +27,13 @@
     "http-server": "^0.8.0",
     "jasmine-ajax": "^3.1.1",
     "jasmine-core": "^2.3.4",
-    "karma": "^0.12.35",
+    "karma": "^0.12.36",
     "karma-browserify": "^4.2.1",
     "karma-jasmine": "^0.3.5",
     "karma-phantomjs-launcher": "^0.2.0",
     "phantomjs": "^1.9.17",
     "ractivate": "^0.2.0",
-    "sinon": "^1.14.1",
+    "sinon": "^1.15.1",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },

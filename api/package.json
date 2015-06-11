@@ -4,19 +4,26 @@
   "private": true,
   "scripts": {
     "ngrok": "ngrok 8080",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "mocha"
   },
   "dependencies": {
     "body-parser": "~1.12.4",
     "cookie-parser": "~1.3.5",
     "debug": "~2.2.0",
     "express": "~4.12.4",
-    "jade": "~1.9.2",
+    "jade": "~1.10.0",
     "jsonwebtoken": "^5.0.1",
-    "lokijs": "^1.2.5",
+    "lokijs": "^1.3.4",
     "morgan": "~1.5.3",
     "ngrok": "^0.1.99",
+    "paperwork": "^2.0.2",
     "serve-favicon": "~2.2.1",
     "socket.io": "^1.3.5"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^6.0.3",
+    "supertest": "^1.0.1"
   }
 }

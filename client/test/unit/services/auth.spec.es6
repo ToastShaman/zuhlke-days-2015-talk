@@ -17,7 +17,7 @@ describe('The Authorization Service', function() {
     jasmine.Ajax.uninstall();
   });
 
-  it('should authenticate a user successfully', function(done) {
+  fit('should authenticate a user successfully', function(done) {
     jasmine.Ajax.stubRequest('http://foobar.com/login').andReturn({
       'status': 200,
       'contentType': 'application/json',
@@ -29,8 +29,8 @@ describe('The Authorization Service', function() {
       })
     });
 
-    auth.login('username', 'password').then(function(user) {
-      expect(storage.memory.get('user').firstname).toBe('John');
+    auth.login('username', 'password').then(user => {
+      expect(storage.memory.get('user').get('firstname')).toBe('John');
       expect(storage.local.get('accessToken')).toBeDefined();
       done();
     });

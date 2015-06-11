@@ -1,16 +1,18 @@
 #!/usr/bin/env node
 
+var configuration = require('../src/configuration');
+
 /**
  * Module dependencies.
  */
-var app = require('../app');
+var app = require('../src/app');
 var debug = require('debug')('api:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
-var port = normalizePort(process.env.PORT || '8080');
+var port = normalizePort(process.env.PORT || configuration.port);
 app.set('port', port);
 
 /**
@@ -29,7 +31,8 @@ server.on('listening', onListening);
  * Listen for web socket connections
  */
 var io = require('socket.io').listen(server);
-var sockets = require('../sockets/sockets')(io);
+var sockets = require('../src/sockets/sockets')(io);
+app.set('io', io);
 
 /**
  * Normalize a port into a number, string, or false.
