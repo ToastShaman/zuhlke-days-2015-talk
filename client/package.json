@@ -16,6 +16,7 @@
     "browserify": "^10.2.4",
     "gulp": "^3.9.0",
     "gulp-if": "^1.2.5",
+    "gulp-jshint": "^1.11.0",
     "gulp-less": "^3.0.3",
     "gulp-minify-css": "^1.1.6",
     "gulp-minify-html": "^1.0.3",

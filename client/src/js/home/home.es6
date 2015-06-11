@@ -1,5 +1,5 @@
 import Ractive from 'ractive';
-import html from './home.ract'
+import html from './home.ract';
 
 class Home {
 

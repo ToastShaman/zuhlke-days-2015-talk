@@ -11,6 +11,7 @@ gulp.task('vendor', require('./gulp-tasks/vendor.js')(gulp));
 gulp.task('minify-html', require('./gulp-tasks/html.js')(gulp));
 gulp.task('less', require('./gulp-tasks/less.js')(gulp));
 gulp.task('build', require('./gulp-tasks/build.js')(gulp));
+gulp.task('jshint', require('./gulp-tasks/jshint.js')(gulp));
 gulp.task('js-watch', ['build'], browserSync.reload);
 gulp.task('less-watch', ['less'], browserSync.reload);
 gulp.task('build-all', ['vendor', 'build', 'less', 'minify-html', 'fonts', 'images', 'jquery']);

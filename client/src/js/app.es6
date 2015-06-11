@@ -30,7 +30,8 @@ let router = new Router(auth, events);
 
 http.interceptors.request.use(function(config) {
   let accessToken = storage.local.get('accessToken');
-  if (accessToken) config.headers['X-Auth-Token'] = accessToken;
+  if (accessToken)
+    config.headers['X-Auth-Token'] = accessToken;
   else delete config.headers['X-Auth-Token'];
   return config;
 });
@@ -50,12 +51,12 @@ auth.restoreLogin().then(() => router.initialise());
 events.auth.restoredLogin.add(function(err, user) {
   if (err && err.status === 401) {
     logger.warn('a failed login attempt has been made');
-    return router.transitionTo('home')
+    return router.transitionTo('home');
   }
 
   if (err) {
     logger.warn('connection to the API has been lost');
-    return router.transitionTo('sorry')
+    return router.transitionTo('sorry');
   }
 
   logger.log('the login credentials have been restored');

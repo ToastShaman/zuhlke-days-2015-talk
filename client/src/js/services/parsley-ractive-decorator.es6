@@ -1,5 +1,6 @@
 import Ractive from 'ractive';
 import _ from 'lodash';
+import $ from 'jquery';
 
 const defaultConfiguration = {
   isFormValid: 'parsleyValid',
@@ -37,7 +38,7 @@ let parsleyDecorator = function(node) {
       _.forEach(inputFields, elem => $(elem).unbind());
       parsleyForm.destroy();
     }
-  }
+  };
 };
 
 parsleyDecorator.config = defaultConfiguration;
