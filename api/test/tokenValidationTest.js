@@ -9,8 +9,7 @@ describe('/token/validate', function() {
     request(app)
       .post('/token/validate')
       .set('Content-Type', 'application/json')
-      .send({})
-      .expect('Content-Type', /json/)
+      .send()
       .expect(401, done);
   });
 
@@ -21,8 +20,7 @@ describe('/token/validate', function() {
       .post('/token/validate')
       .set('Content-Type', 'application/json')
       .set('X-Auth-Token', accessToken)
-      .send({})
-      .expect('Content-Type', /json/)
+      .send()
       .expect(401, done);
   });
 
@@ -33,8 +31,7 @@ describe('/token/validate', function() {
       .post('/token/validate')
       .set('Content-Type', 'application/json')
       .set('X-Auth-Token', accessToken)
-      .send({})
-      .expect('Content-Type', /json/)
+      .send()
       .expect(200, done);
   });
 
