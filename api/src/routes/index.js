@@ -53,7 +53,12 @@ function halItem(item) {
       _links: {
           self: {href: self}
       },
-      user: _.omit(item, ['meta', '$loki']),
+      user: {
+          id: item._id,
+          firstname: item.firstname,
+          lastname: item.lastname,
+          username: item.username 
+      },
       accessToken: jwt.sign({username: item.username}, 'secretKey')
   };
 }
