@@ -35,6 +35,12 @@ var sockets = require('../src/sockets/sockets')(io);
 app.set('io', io);
 
 /**
+ * Connect to Mongodb
+ */
+var mongoose = require('mongoose');
+mongoose.connect(configuration.mongodb);
+
+/**
  * Normalize a port into a number, string, or false.
  */
 function normalizePort(val) {

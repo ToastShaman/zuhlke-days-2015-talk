@@ -1,5 +1,3 @@
-var loki = require('lokijs');
-
 var express = require('express');
 var path = require('path');
 var logger = require('morgan');
@@ -13,15 +11,15 @@ var sms = require('./routes/sms');
 
 var app = express();
 
-// database - lokijs
-app.locals.db = new loki('loki.json');
-app.locals.users = app.locals.db.addCollection('users');
-app.locals.sms = app.locals.db.addCollection('sms');
-app.locals.users.insert({
+// database - insert default user
+var User = require('./model/user');
+new User({
   username: 'arthur@nudge.com',
   firstname: 'Arthur',
   lastname: 'Nudge',
   password: 'password'
+}).saveAsync().catch(function (err) {
+  console.log(err);
 });
 
 // view engine setup
