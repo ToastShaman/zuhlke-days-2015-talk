@@ -1,7 +1,7 @@
-var sms = require('./../events/sms');
+var textMessage = require('./../events/textMessage');
 
 var sockets = function(io) {
-  sms.on('received', function(message) {
+  textMessage.on('received', function(message) {
     io.emit('receivedSms', message);
   });
 };

@@ -1,9 +1,33 @@
+process.env.NODE_ENV = 'test';
+
 var should = require('should');
 var request = require('supertest');
-var app = require('../src/app.js');
+var drop = require('./dropDatabase');
+var localhost = require('../src/configuration').mongodb;
+var User = require('../src/model/user');
 var jwt = require('jsonwebtoken');
 
 describe('/token/validate', function() {
+
+  var app;
+
+  beforeEach(function(done) {
+    drop.mongo(localhost)
+      .then(function() {
+        return new User({
+          username: 'arthur@nudge.com',
+          firstname: 'Arthur',
+          lastname: 'Nudge',
+          password: 'password'
+        })
+        .saveAsync();
+      })
+      .then(function() {
+        app = require('../src/app.js');
+      })
+      .then(done)
+      .catch(done);
+  });
 
   it('should respond with a 401 if there is no token', function(done) {
     request(app)

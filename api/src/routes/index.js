@@ -27,9 +27,7 @@ router.post('/token/validate', function(req, res, next) {
       .then(function(existingUser) {
         if (!existingUser) return res.sendStatus(401);
         res.json(halItem(existingUser));
-      }).catch(function(err) {
-        res.sendStatus(500);
-      });
+      }).catch(next);
   });
 });
 
@@ -42,9 +40,7 @@ router.post('/login', paperwork.accept(schema), function(req, res, next) {
       if (!existingUser) return res.sendStatus(401);
       if (!existingUser.authenticate(password)) return res.sendStatus(401);
       return res.json(halItem(existingUser));
-    }).catch(function(err) {
-      res.sendStatus(500);
-    });
+    }).catch(next);
 });
 
 function halItem(item) {
@@ -57,7 +53,7 @@ function halItem(item) {
           id: item._id,
           firstname: item.firstname,
           lastname: item.lastname,
-          username: item.username 
+          username: item.username
       },
       accessToken: jwt.sign({username: item.username}, 'secretKey')
   };
