@@ -7,6 +7,7 @@
   "scripts": {
     "start": "gulp --env=dev",
     "start-production": "gulp --env=production",
+    "build-prodction": "gulp build-all --env=production",
     "test": "karma start test/karma.conf"
   },
   "devDependencies": {

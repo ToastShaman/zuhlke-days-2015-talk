@@ -19,8 +19,7 @@ describe('/token/validate', function() {
           firstname: 'Arthur',
           lastname: 'Nudge',
           password: 'password'
-        })
-        .saveAsync();
+        }).saveAsync();
       })
       .then(function() {
         app = require('../src/app.js');

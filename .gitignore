@@ -11,3 +11,6 @@ api/*.iml
 client/npm-debug.log
 
 api/npm-debug.log
+
+data
+mongodb-osx-x86_64-3.0.4
