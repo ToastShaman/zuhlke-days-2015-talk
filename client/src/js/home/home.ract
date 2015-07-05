@@ -28,7 +28,7 @@
             <button class="btn btn-lg btn-primary btn-block btn-signin"
                     type="submit"
                     on-click='signIn'
-                    disabled="{{!parsleyValid}}">Sign in</button>
+                    disabled="{{!isFormValid}}">Sign in</button>
         </form>
         {{#if showError}}
         <p class="text-danger">Your username/password is invalid!</p>

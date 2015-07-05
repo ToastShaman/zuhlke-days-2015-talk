@@ -3,9 +3,7 @@ var packageJson = require('../package.json');
 
 module.exports.libs = _(packageJson.dependencies)
   .keys()
-  .remove(function(n) {
-    return n !== 'jquery'
-  })
+  .remove(function(n) { return n !== 'jquery' })
   .value();
 
 module.exports.paths = {

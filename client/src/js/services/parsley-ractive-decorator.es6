@@ -1,9 +1,7 @@
 import Ractive from 'ractive';
 import _ from 'lodash';
-import $ from 'jquery';
 
 const defaultConfiguration = {
-  isFormValid: 'parsleyValid',
   focus: 'none',
   errorClass: 'has-error',
   successClass: 'has-success',
@@ -19,13 +17,13 @@ const defaultConfiguration = {
 
 let parsleyDecorator = function(node) {
   let ractive = this;
-  ractive.set(parsleyDecorator.config.isFormValid, false);
+  ractive.set('isFormValid', false);
 
   let parsleyForm = $(node).parsley(parsleyDecorator.config);
   let inputFields = $(node).children('.form-group').children('input') || [];
 
   function validate() {
-    ractive.set(parsleyDecorator.config.isFormValid, parsleyForm.validate());
+    ractive.set('isFormValid', parsleyForm.validate());
   }
 
   _.forEach(inputFields, elem => {
