@@ -48,7 +48,7 @@ router.addRoute('404', new NotFound());
 
 auth.restoreLogin().then(() => router.initialise());
 
-events.auth.restoredLogin.add(function(err, user) {
+events.auth.restoredLogin.add((err, user) => {
   if (err && err.status === 401) {
     logger.warn('a failed login attempt has been made');
     return router.transitionTo('home');
@@ -63,17 +63,17 @@ events.auth.restoredLogin.add(function(err, user) {
   router.transitionTo('welcome');
 });
 
-events.routing.accessDenied.add(function(path) {
+events.routing.accessDenied.add(path => {
   logger.warn('the access to `' + path + '` has been denied');
   router.transitionTo('home');
 });
 
-events.routing.notFound.add(function() {
+events.routing.notFound.add(() => {
   logger.log('the entered path could not be found');
   router.transitionTo('404');
 });
 
-events.routing.transitionTo.add(function(path, view) {
+events.routing.transitionTo.add((path, view) => {
   logger.log('transitioning to `' + path + '`');
   view.unrender().then(() => router.transitionTo(path));
 });
